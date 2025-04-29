@@ -3,11 +3,11 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - main  # Only push from 'main' branch for security
+      - main  # Only push on main branch
 
 permissions:
   contents: read
-  packages: write  # Needed to push to GHCR
+  packages: write
 
 jobs:
   build-and-push:
@@ -34,4 +34,5 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
+          provenance: false  # Optional: disable SBOM if not needed
           tags: ghcr.io/azimafroozeh/clang-format-python:14
